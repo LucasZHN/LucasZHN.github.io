@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/fav.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/fav.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/fav.svg">
+  <link rel="mask-icon" href="/images/fav.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/black/pace-theme-flash.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lucaszhn.gitee.io","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Note:  This archive is used for PostgreSQL startup configuration in DSA Shanghai. Location:  上海市宜山路333号汇鑫国际大厦1101 现状    在刚重置好的系统中，&#x2F;data&#x2F;postgresql&#x2F;db 可能存在文件，但可能数据库中并不存在prodis用户与数据库。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PostgreSQL SETUP in DSA Shanghai">
+<meta property="og:url" content="https://lucaszhn.gitee.io/2022/01/20/Postgresql-SETUP-in-DSA-Shanghai/index.html">
+<meta property="og:site_name" content="Lucas&#39; Tiny World">
+<meta property="og:description" content="Note:  This archive is used for PostgreSQL startup configuration in DSA Shanghai. Location:  上海市宜山路333号汇鑫国际大厦1101 现状    在刚重置好的系统中，&#x2F;data&#x2F;postgresql&#x2F;db 可能存在文件，但可能数据库中并不存在prodis用户与数据库。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-01-20T07:44:41.000Z">
+<meta property="article:modified_time" content="2022-02-11T03:28:05.414Z">
+<meta property="article:author" content="Yijie Zhang">
+<meta property="article:tag" content="DSA">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lucaszhn.gitee.io/2022/01/20/Postgresql-SETUP-in-DSA-Shanghai/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://lucaszhn.gitee.io/2022/01/20/Postgresql-SETUP-in-DSA-Shanghai/","path":"2022/01/20/Postgresql-SETUP-in-DSA-Shanghai/","title":"PostgreSQL SETUP in DSA Shanghai"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>PostgreSQL SETUP in DSA Shanghai | Lucas' Tiny World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Lucas' Tiny World</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Daily Life is Not Enough.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">3</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%B0%E7%8A%B6"><span class="nav-number">1.</span> <span class="nav-text">现状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%90%AFmaintenance-%E8%BF%9B%E5%85%A5%E6%89%8B%E5%8A%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">开启maintenance,进入手动模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E7%8E%B0%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">删除现有数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%96%B0%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.</span> <span class="nav-text">启动新数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5dump"><span class="nav-number">5.</span> <span class="nav-text">导入dump</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8active%E4%B8%8A%E5%87%86%E5%A4%87%E5%A5%BD%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%9A%84clone"><span class="nav-number">6.</span> <span class="nav-text">在active上准备好可以使用的clone</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8passive%E4%B8%8Aclone%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%B3%A8%E6%84%8Fpassive%E4%B8%8A%E4%B8%8D%E5%8F%AF%E7%9B%B4%E6%8E%A5%E6%81%A2%E5%A4%8Ddmp"><span class="nav-number">7.</span> <span class="nav-text">在passive上clone数据库 注意passive上不可直接恢复dmp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0PostgresSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84"><span class="nav-number">8.</span> <span class="nav-text">更新PostgresSQL数据库结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%90%AFDSA-prodis%E8%BF%9B%E7%A8%8B"><span class="nav-number">9.</span> <span class="nav-text">开启DSA prodis进程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E9%97%AE%E9%A2%98"><span class="nav-number">10.</span> <span class="nav-text">检查是否存在问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5active%E6%83%85%E5%86%B5"><span class="nav-number">10.1.</span> <span class="nav-text">检查active情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2pgsql%E5%BA%93%E6%98%AF%E5%90%A6%E5%8F%AF%E5%86%99"><span class="nav-number">10.2.</span> <span class="nav-text">查询pgsql库是否可写</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yijie Zhang"
+      src="http://mms1.baidu.com/it/u=3101367084,445138575&fm=253&app=138&f=JPEG&fmt=auto&q=75?w=540&h=500">
+  <p class="site-author-name" itemprop="name">Yijie Zhang</p>
+  <div class="site-description" itemprop="description">An Idot from SH</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:zhangyijie@tom.com" title="E-Mail → mailto:zhangyijie@tom.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/8217646" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;8217646" rel="noopener" target="_blank"><i class="fas fa-bold fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5383934206" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5383934206" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/publicdomain/zero/1.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/cc_zero.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+
+      <!-- require APlayer -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+      <!-- require MetingJS -->
+      <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+      <meting-js
+   	       server="netease"
+	       type="song"
+	       id="1310295592"
+	       autoplay="true"
+	       loop="one"
+	       volume="0.7">
+      </meting-js>
+    </div>
+
+
+    <!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="https://music.163.com/outchain/player?type=2&id=1310295592&auto=1&height=66"></iframe>-->
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lucaszhn.gitee.io/2022/01/20/Postgresql-SETUP-in-DSA-Shanghai/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://mms1.baidu.com/it/u=3101367084,445138575&fm=253&app=138&f=JPEG&fmt=auto&q=75?w=540&h=500">
+      <meta itemprop="name" content="Yijie Zhang">
+      <meta itemprop="description" content="An Idot from SH">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucas' Tiny World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PostgreSQL SETUP in DSA Shanghai
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-01-20 15:44:41" itemprop="dateCreated datePublished" datetime="2022-01-20T15:44:41+08:00">2022-01-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-02-11 11:28:05" itemprop="dateModified" datetime="2022-02-11T11:28:05+08:00">2022-02-11</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>2.6k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>2 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><em><strong>Note:</strong></em>  <em>This archive is used for PostgreSQL startup configuration in DSA Shanghai.</em></p>
+<p><em><strong>Location:</strong></em>  上海市宜山路333号汇鑫国际大厦1101</p>
+<h1 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h1><p>    在刚重置好的系统中，/data/postgresql/db 可能存在文件，但可能数据库中并不存在prodis用户与数据库。</p>
+<span id="more"></span>
+<div align=center><strong align=center>如果</strong></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">su -</span><br><span class="line">psql -U prodis</span><br><span class="line">    Password <span class="keyword">for</span> user prodis:</span><br><span class="line">    psql: FATAL:  password authentication failed <span class="keyword">for</span> user <span class="string">&quot;prodis&quot;</span></span><br></pre></td></tr></table></figure>
+<div align=center><strong>且</strong></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">su - postgres</span><br><span class="line">psql</span><br><span class="line">    psql (10.15)</span><br><span class="line">    Type <span class="string">&quot;help&quot;</span> <span class="keyword">for</span> <span class="built_in">help</span>.</span><br><span class="line"></span><br><span class="line">postgres=<span class="comment"># \d</span></span><br><span class="line">    Did not find any relations.</span><br><span class="line">postgres=<span class="comment"># \c prodis</span></span><br><span class="line">    FATAL:  database <span class="string">&quot;prodis&quot;</span> does not exist</span><br><span class="line">    Previous connection kept</span><br><span class="line">postgres=<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>可能需要认为数据库导入或备份不成功。<br><strong>以下在active上操作。</strong></p>
+<h1 id="开启maintenance-进入手动模式"><a href="#开启maintenance-进入手动模式" class="headerlink" title="开启maintenance,进入手动模式"></a>开启maintenance,进入手动模式</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">su - root</span><br><span class="line">crm maintenance on</span><br><span class="line">systemctl isolate multi-user.target</span><br><span class="line">systemctl stop cron.service</span><br></pre></td></tr></table></figure>
+
+<h1 id="删除现有数据库"><a href="#删除现有数据库" class="headerlink" title="删除现有数据库"></a>删除现有数据库</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su - root</span><br><span class="line">systemctl <span class="built_in">disable</span> --now postgresql.service</span><br><span class="line">rm -rf /data/postgres/db/*</span><br></pre></td></tr></table></figure>
+
+<h1 id="启动新数据库"><a href="#启动新数据库" class="headerlink" title="启动新数据库"></a>启动新数据库</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su - postgres</span><br><span class="line">/usr/bin/initdb --auth=ident /data/postgres/db/</span><br><span class="line">pg_ctl start -D /data/postgres/db/ -o <span class="string">&#x27;-c config_file=/etc/postgresql/prodis/postgresql.conf&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="导入dump"><a href="#导入dump" class="headerlink" title="导入dump"></a>导入dump</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su - postgres</span><br><span class="line">db_restore_schema.sh -v prodis /data/postgres/dump/&lt;hostname&gt;_prodis_&lt;date&gt;.dmp</span><br></pre></td></tr></table></figure>
+
+<h1 id="在active上准备好可以使用的clone"><a href="#在active上准备好可以使用的clone" class="headerlink" title="在active上准备好可以使用的clone"></a>在active上准备好可以使用的clone</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su - root</span><br><span class="line">pg_logship_init -f</span><br></pre></td></tr></table></figure>
+
+<h1 id="在passive上clone数据库-注意passive上不可直接恢复dmp"><a href="#在passive上clone数据库-注意passive上不可直接恢复dmp" class="headerlink" title="在passive上clone数据库 注意passive上不可直接恢复dmp"></a>在passive上clone数据库 <em><strong>注意passive上不可直接恢复dmp</strong></em></h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">crm maintenance on</span><br><span class="line">pg_logship_setup</span><br></pre></td></tr></table></figure>
+
+<h1 id="更新PostgresSQL数据库结构"><a href="#更新PostgresSQL数据库结构" class="headerlink" title="更新PostgresSQL数据库结构"></a>更新PostgresSQL数据库结构</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su - prodis</span><br><span class="line">dbupdate -v -i /etc/prodis/tmp_dbupdate.ini</span><br></pre></td></tr></table></figure>
+
+<h1 id="开启DSA-prodis进程"><a href="#开启DSA-prodis进程" class="headerlink" title="开启DSA prodis进程"></a>开启DSA prodis进程</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">su - root</span><br><span class="line">systemctl start cron.service</span><br><span class="line">systemctl isolate prodis-active.target</span><br><span class="line">crm maintenance off</span><br><span class="line">systemctl <span class="built_in">enable</span> --now pacemaker</span><br><span class="line">TERM=linux yast prodiscluster</span><br></pre></td></tr></table></figure>
+
+<h1 id="检查是否存在问题"><a href="#检查是否存在问题" class="headerlink" title="检查是否存在问题"></a>检查是否存在问题</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crm_mon -Ar</span><br></pre></td></tr></table></figure>
+
+<p>应得到以下类似输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">Stack: corosync</span><br><span class="line">Current DC: UPS-MEBANTING1A (version 2.0.1+20190417.13d370ca9-3.15.1-2.0.1+20190417.13d370ca9) - partition with quorum</span><br><span class="line">Last updated: Thu Jan 20 13:17:40 2022</span><br><span class="line">Last change: Thu Jan 20 11:54:55 2022 by root via crm_attribute on UPS-MEBANTING1A</span><br><span class="line"></span><br><span class="line">2 nodes configured</span><br><span class="line">11 resources configured</span><br><span class="line"></span><br><span class="line">Online: [ UPS-MEBANTING1A UPS-MEBANTING1B ]</span><br><span class="line"></span><br><span class="line">Full list of resources:</span><br><span class="line"></span><br><span class="line"> Resource Group: host1-group</span><br><span class="line">     host1ip    (ocf::heartbeat:IPaddr2):       Started UPS-MEBANTING1A</span><br><span class="line">     sysmode-act        (service:sysmode-act):  Started UPS-MEBANTING1A</span><br><span class="line"> Resource Group: host2-group</span><br><span class="line">     sysmode-psv        (service:sysmode-psv):  Started UPS-MEBANTING1B</span><br><span class="line"> Clone Set: prodis-ha [prodis] (promotable)</span><br><span class="line">     Masters: [ UPS-MEBANTING1A ]</span><br><span class="line">     Slaves: [ UPS-MEBANTING1B ]</span><br><span class="line"> Clone Set: ping-ha [ping-nodes]</span><br><span class="line">     Started: [ UPS-MEBANTING1A UPS-MEBANTING1B ]</span><br><span class="line"> Clone Set: notify-ha [monitor-nodes]</span><br><span class="line">     Started: [ UPS-MEBANTING1A UPS-MEBANTING1B ]</span><br><span class="line"> Clone Set: pgsql-ha [pgsqld] (promotable)</span><br><span class="line">     Masters: [ UPS-MEBANTING1A ]</span><br><span class="line">     Slaves: [ UPS-MEBANTING1B ]</span><br><span class="line"></span><br><span class="line">Node Attributes:</span><br><span class="line">* Node UPS-MEBANTING1A:</span><br><span class="line">    + master-pgsqld                     : 1001</span><br><span class="line">    + master-prodis                     : 1000</span><br><span class="line">    + pingd                             : 100</span><br><span class="line">    + status                            : master</span><br><span class="line">* Node UPS-MEBANTING1B:</span><br><span class="line">    + master-pgsqld                     : 1000</span><br><span class="line">    + master-prodis                     : 1000</span><br><span class="line">    + pingd                             : 100</span><br><span class="line">    + status                            : slave</span><br></pre></td></tr></table></figure>
+
+<h2 id="检查active情况"><a href="#检查active情况" class="headerlink" title="检查active情况"></a>检查active情况</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prodis-status</span><br><span class="line">isactive</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询pgsql库是否可写"><a href="#查询pgsql库是否可写" class="headerlink" title="查询pgsql库是否可写"></a>查询pgsql库是否可写</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select pg_is_in_recovery();</span><br></pre></td></tr></table></figure>
+<p>应得到</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">postgres=# <span class="keyword">select</span> pg_is_in_recovery();</span><br><span class="line"> pg_is_in_recovery </span><br><span class="line"><span class="comment">-------------------</span></span><br><span class="line"> f</span><br><span class="line">(<span class="number">1</span> <span class="keyword">row</span>)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Yijie Zhang
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://lucaszhn.gitee.io/2022/01/20/Postgresql-SETUP-in-DSA-Shanghai/" title="PostgreSQL SETUP in DSA Shanghai">https://lucaszhn.gitee.io/2022/01/20/Postgresql-SETUP-in-DSA-Shanghai/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>CC-ZERO</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/DSA/" rel="tag"><i class="fa fa-tag"></i> DSA</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/01/18/Shell-Process-Control/" rel="prev" title="Shell Process Control">
+                  <i class="fa fa-chevron-left"></i> Shell Process Control
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/22/UPGRADE-Prodis-Ser-Ver-2021/" rel="next" title="UPGRADE Prodis Ser. Ver.2021">
+                  UPGRADE Prodis Ser. Ver.2021 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fab fa-old-republic"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lucas</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Symbols count total">13k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">12 mins.</span>
+  </span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+</body>
+</html>
