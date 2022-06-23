@@ -242,7 +242,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-23 13:35:22" itemprop="dateModified" datetime="2022-06-23T13:35:22+08:00">2022-06-23</time>
+      <time title="Modified: 2022-06-23 14:12:33" itemprop="dateModified" datetime="2022-06-23T14:12:33+08:00">2022-06-23</time>
     </span>
 
   
@@ -252,14 +252,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>2.7k</span>
+      <span>3k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
+      <span>3 mins.</span>
     </span>
 </div>
 
@@ -271,14 +271,22 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="ReaR-config"><a href="#ReaR-config" class="headerlink" title="ReaR config"></a>ReaR config</h1><p>This is a ReaR config backup from DSA-China.<br><strong>PATH = /etc/rear/local.conf</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/22/Rear-backup/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<p><strong>Critical!!</strong></p>
+<p>Some mistakes in .conf file will not deliver any ERROR message.</p>
+<p>For example, </p>
+<ol>
+<li>Programme failure</br></li>
+</ol>
+<p>At line 41 in code block bellow, </p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BACKUP_PROG_EXCLUDE=(</span><br><span class="line">/mnt/*</span><br><span class="line">/tmp/*</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>I added symbol “`” beside “)”. This symbol commented the lines bellow hence made the programmes bellow unusable. </p>
+<ol start="2">
+<li>Programme can’t be used</br></li>
+</ol>
+<p>Programmes bellow must be installed in the server or it will deliver ERROR and the rear -v mkbackup will be stopped.</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This file etc/rear/local.conf is intended for the user&#x27;s</span></span><br><span class="line"><span class="comment"># manual configuration of Relax-and-Recover (ReaR).</span></span><br><span class="line"><span class="comment"># For configuration through packages and other automated means</span></span><br><span class="line"><span class="comment"># we recommend a separated file named site.conf next to this file</span></span><br><span class="line"><span class="comment"># and leave local.conf as is (ReaR upstream will never ship a site.conf).</span></span><br><span class="line"><span class="comment"># The default OUTPUT=ISO creates the ReaR rescue medium as ISO image.</span></span><br><span class="line"><span class="comment"># You need to specify your particular backup and restore method for your data</span></span><br><span class="line"><span class="comment"># as the default BACKUP=REQUESTRESTORE does not really do that (see &quot;man rear&quot;).</span></span><br><span class="line"><span class="comment"># Configuration variables are documented in /usr/share/rear/conf/default.conf</span></span><br><span class="line"><span class="comment"># and the examples in /usr/share/rear/conf/examples/ can be used as templates.</span></span><br><span class="line"><span class="comment"># ReaR reads the configuration files via the bash builtin command &#x27;source&#x27;</span></span><br><span class="line"><span class="comment"># so bash syntax like VARIABLE=&quot;value&quot; (no spaces at &#x27;=&#x27;) is mandatory.</span></span><br><span class="line"><span class="comment"># Because &#x27;source&#x27; executes the content as bash scripts you can run commands</span></span><br><span class="line"><span class="comment"># within your configuration files, in particular commands to set different</span></span><br><span class="line"><span class="comment"># configuration values depending on certain conditions as you need like</span></span><br><span class="line"><span class="comment"># CONDITION_COMMAND &amp;&amp; VARIABLE=&quot;special_value&quot; || VARIABLE=&quot;usual_value&quot;</span></span><br><span class="line"><span class="comment"># but that means CONDITION_COMMAND gets always executed when &#x27;rear&#x27; is run</span></span><br><span class="line"><span class="comment"># so ensure nothing can go wrong if you run commands in configuration files.</span></span><br><span class="line"><span class="comment">#ISO_DIR=cifs://172.27.8.85/backups_for_aachen/zyjtest</span></span><br><span class="line"><span class="comment">#ISO DIR=file:///usb_disk/Backups_for_Rear/Rocky_Backup_for_DevOps </span></span><br><span class="line">BACKUP_PROG=tar </span><br><span class="line">BACKUP_TYPE=full </span><br><span class="line">BACKUP=NETFS </span><br><span class="line"><span class="comment">#BACKUP_URL=cifs://172.27.8.85/backups_for_aachen/zyjtest</span></span><br><span class="line">BACKUP_URL=file:///mnt/wsl</span><br><span class="line"><span class="comment"># create checksums of the backup tarball</span></span><br><span class="line"><span class="comment">#BACKUP_OPTIONS=&quot;cred=/etc/rear/cifs&quot;</span></span><br><span class="line">BACKUP_OPTIONS=<span class="string">&quot;&quot;</span></span><br><span class="line">OUTPUT=ISO </span><br><span class="line"><span class="comment">#OUTPUT_URL=cifs://172.27.8.85/backups_for_aachen/zyjtest</span></span><br><span class="line"><span class="comment"># save in $hostname/2020-04-02T15:32+02:00/ style directory</span></span><br><span class="line">DSA_BACKUP_PREFIX=<span class="string">&quot;<span class="variable">$&#123;HOSTNAME&#125;</span>-<span class="subst">$(date &#x27;+%Y%m%d-%H%M&#x27;)</span>&quot;</span></span><br><span class="line"><span class="comment"># save ISO image (base files) into DSA_BACKUP_PREFIX</span></span><br><span class="line">OUTPUT_PREFIX=<span class="string">&quot;<span class="variable">$&#123;DSA_BACKUP_PREFIX&#125;</span>&quot;</span></span><br><span class="line"><span class="comment"># store tgz archive into DSA_BACKUP_PREFIX</span></span><br><span class="line">NETFS_PREFIX=<span class="string">&quot;<span class="variable">$&#123;DSA_BACKUP_PREFIX&#125;</span>&quot;</span></span><br><span class="line"><span class="comment"># required programs for the rescue CD. Note that the program must be available or creating the CD will abort. </span></span><br><span class="line">BACKUP_PROG_EXCLUDE=(</span><br><span class="line">/mnt/*</span><br><span class="line">/tmp/*</span><br><span class="line">)</span><br><span class="line">REQUIRED_PROGS=( </span><br><span class="line">awk </span><br><span class="line">base64 </span><br><span class="line">diff </span><br><span class="line">dos2unix </span><br><span class="line">lsblk </span><br><span class="line">lsof </span><br><span class="line">lspci </span><br><span class="line">md5sum </span><br><span class="line">mkfs.vfat </span><br><span class="line">mkswap </span><br><span class="line">mount </span><br><span class="line">mount.cifs </span><br><span class="line">mount.fuse </span><br><span class="line">mount.lowntfs-3g </span><br><span class="line">mount.ntfs </span><br><span class="line">mount.ntfs-3g </span><br><span class="line">ntfs-3g </span><br><span class="line">ntfs-3g.probe </span><br><span class="line">sshfs </span><br><span class="line">parted </span><br><span class="line">ping </span><br><span class="line">ping6 </span><br><span class="line">pstree </span><br><span class="line">renice </span><br><span class="line">rsync </span><br><span class="line">screen </span><br><span class="line">sha256sum </span><br><span class="line">tmux </span><br><span class="line">swapon </span><br><span class="line">touch </span><br><span class="line">vim </span><br><span class="line">vimdiff </span><br><span class="line">scp </span><br><span class="line"><span class="comment">#smbclient </span></span><br><span class="line">ssh </span><br><span class="line">watch </span><br><span class="line">chattr </span><br><span class="line">lsattr </span><br><span class="line"><span class="comment">#ncurses-utils: </span></span><br><span class="line">clear </span><br><span class="line">infocmp </span><br><span class="line">reset </span><br><span class="line">tabs </span><br><span class="line">toe </span><br><span class="line">tput </span><br><span class="line">tset </span><br><span class="line"><span class="string">&quot;<span class="variable">$&#123;REQUIRED_PROGS[@]&#125;</span>&quot;</span> </span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -847,7 +855,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Symbols count total">15k</span>
+    <span title="Symbols count total">16k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
