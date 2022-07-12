@@ -134,7 +134,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -202,6 +202,100 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lucaszhn.gitee.io/2022/07/12/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://mms1.baidu.com/it/u=3101367084,445138575&fm=253&app=138&f=JPEG&fmt=auto&q=75?w=540&h=500">
+      <meta itemprop="name" content="Yijie Zhang">
+      <meta itemprop="description" content="An Idot from SH">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucas' Tiny World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-title-link" itemprop="url">数据库</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-07-12 11:46:56 / Modified: 11:48:42" itemprop="dateCreated datePublished" datetime="2022-07-12T11:46:56+08:00">2022-07-12</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>9.9k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>9 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-Devices"><a href="#1-Devices" class="headerlink" title="1. Devices"></a>1. Devices</h1><h2 id="1-1-Release-Monitor"><a href="#1-1-Release-Monitor" class="headerlink" title="1.1 Release Monitor"></a>1.1 Release Monitor</h2><h3 id="1-1-1-Test-Releases"><a href="#1-1-1-Test-Releases" class="headerlink" title="1.1.1 Test Releases"></a>1.1.1 Test Releases</h3><p>System: Directories? “/data/afd/rel/&lt;cpl/mftc&gt;/<releasenr>/release”</p>
+<p>Testrelease: release file “CONFIGURATION”</p>
+<p><img src="C:\Users\LJX\AppData\Roaming\marktext\images\2022-07-07-17-58-31-image.png"></p>
+<p>Version: afd_release.creationtime</p>
+<p>Description: release file “COMMENT”</p>
+<p>Reloaded: select COUNT(sysnr) from afd_tester where currentrele aseid = ‘5339’; # 5339 get from /data/afd/rel/mftc/1652426358/release</p>
+<p>Assigned:?</p>
+<h3 id="1-1-2-Testers"><a href="#1-1-2-Testers" class="headerlink" title="1.1.2 Testers"></a>1.1.2 Testers</h3><p>Name: ?</p>
+<p>systemname: afd_test.tname</p>
+<p>Version: afd_release.creationtime 对应的release的创建时间�?</p>
+<p>Last online: afd_test.lastaccesstime</p>
+<h3 id="1-1-3-Tasks-overview"><a href="#1-1-3-Tasks-overview" class="headerlink" title="1.1.3 Tasks-overview"></a>1.1.3 Tasks-overview</h3><p>Command: afd_task.command</p>
+<h2 id="1-2-Devices"><a href="#1-2-Devices" class="headerlink" title="1.2 Devices"></a>1.2 Devices</h2><h3 id="1-2-1-Devicetypes"><a href="#1-2-1-Devicetypes" class="headerlink" title="1.2.1 Devicetypes"></a>1.2.1 Devicetypes</h3><p>select * from device_devicetype where active = ‘Y’;</p>
+<p>Number of devices: select count(sysnr) from device_property where variant = ‘MFT-3’;</p>
+<p>List of relations<br>| Name | Type | Remark |<br>|:—:|:—:|:—:|<br>| afd_actualparam | table | |<br>| afd_alias | table | |<br>| afd_command | table | |<br>| afd_file | table | |<br>| afd_formalparam | table | |<br>| afd_formalparam_formalparamid_seq | sequence | |<br>| afd_placerelease | table | |<br>| afd_placeschedule | table | |<br>| afd_release | table | |<br>| afd_release_releaseid_seq | sequence | |<br>| afd_schedule | table | |<br>| afd_schedule_scheduleid_seq | sequence | |<br>| afd_setting | table | |<br>| afd_task | table | |<br>| afd_task_taskid_seq | sequence | |<br>| afd_tester | table | |<br>| afd_testerschedule | table | |<br>| afd_updatecontrol | table | |<br>| archive_part | table | |<br>| archive_testecu | table | |<br>| archive_testpbl | table | |<br>| archive_teststep | table | |<br>| archive_teststeperror | table | |<br>| audit_action | table | |<br>| audit_context | table | |<br>| audit_log | table | |<br>| audit_log_log_id_seq | sequence | |<br>| audit_status | table | |<br>| check_refcount | view | |<br>| config_change | table | |<br>| config_change_changeid_seq | sequence | |<br>| config_context | table | |<br>| config_context_contextid_seq | sequence | |<br>| config_devicetype | table | |<br>| config_enumvalue | table | |<br>| config_keystore | table | |<br>| config_keystore_id_seq | sequence | |<br>| config_logship_test | table | |<br>| config_parameter | table | |<br>| config_parameter_parameterid_seq | sequence | |<br>| config_place | table | |<br>| config_place_placeid_seq | sequence | |<br>| config_set | table | |<br>| config_setting | table | |<br>| config_setversion | table | |<br>| config_topic | table | |<br>| config_version | table | |<br>| device_attributename | table | |<br>| device_attributevalue | table | |<br>| device_coldstart | table | |<br>| device_devicetype | table | |<br>| device_distribution | table | |<br>| device_download | table | |<br>| device_download_downloadid_seq | sequence | |<br>| device_nodecoldstart | table | |<br>| device_placedownload | table | |<br>| device_property | table | |<br>| device_subdevice | table | |<br>| device_subsystem | table | |<br>| device_testercert | table | |<br>| device_testercert_testercertid_seq | sequence | |<br>| device_testerdownload | table | |<br>| device_vehiclehistory | table | |<br>| device_vehiclehistory_historyid_seq | sequence | |<br>| eris_retest | table | |<br>| fazit_activity | table | |<br>| fazit_alive | table | |<br>| fazit_doc_component | table | |<br>| fazit_docdata | table | |<br>| fazit_docstatus | table | |<br>| fazit_dt_ans | table | |<br>| fazit_dt_ans_transp | table | |<br>| fazit_dt_req | table | |<br>| fazit_ecu | table | |<br>| fazit_ecu_component | table | |<br>| fazit_ecu_ecuid_seq | sequence | |<br>| fazit_error | table | |<br>| fazit_error_errorid_seq | sequence | |<br>| fazit_komp | table | |<br>| fazit_ks | table | |<br>| fazit_ks03 | table | |<br>| fazit_ks2_component | table | |<br>| fazit_ks_component | table | |<br>| fazit_mk0x | table | |<br>| fazit_request | table | |<br>| fazit_response | table | |<br>| fazit_sdfd | table | |<br>| fazit_sequence_telno | sequence | |<br>| fazit_setting | table | |<br>| fazit_signerf1 | table | |<br>| fazit_smc1 | table | |<br>| fazit_status | table | |<br>| fazit_swap | table | |<br>| fazit_swap_signature | table | |<br>| fazit_swapbgrs | table | |<br>| fazit_swapbgrs_release | table | |<br>| fazit_tel | table | |<br>| fazit_tel_telno_seq | sequence | |<br>| fazit_telinstance | table | |<br>| fazit_terminal | table | |<br>| fazit_terminal_terminalid_seq | sequence | |<br>| fazit_tra3 | table | |<br>| fazit_transponder | table | |<br>| fazit_transponder_component | table | |<br>| fazit_transponderstatus | table | |<br>| fazit_vehicle | table | |<br>| fazit_vehiclestate | table | |<br>| fazit_vkms | table | |<br>| fazit_vs_ans | table | |<br>| fazit_vs_anscomp | table | |<br>| fazit_vs_req | table | |<br>| fazit_vs_reqcomp | table | |<br>| fazit_wfsstatus | table | |<br>| fiseqs_result | table | |<br>| fiseqs_resultcfg | table | |<br>| fiseqs_value | table | |<br>| fiseqs_vehicle | table | |<br>| ftab_codefile | table | |<br>| ftab_codefilefile | table | |<br>| ftab_codefilereltabversion | table | |<br>| ftab_codefileversion | table | |<br>| ftab_release | table | |<br>| ftab_release_releaseid_seq | sequence | |<br>| ftab_releaseversion | table | |<br>| ftab_reltab | table | |<br>| ftab_reltabfile | table | |<br>| ftab_reltabversion | table | |<br>| ftab_setting | table | |<br>| ftab_vehicle | table | |<br>| i18n_applanguage | table | |<br>| i18n_langblob | table | |<br>| i18n_langtext | table | |<br>| i18n_language | table | |<br>| i18n_languagemap | table | |<br>| i18n_textref | table | |<br>| i18n_textref_textrefid_seq | sequence | |<br>| link_item | table | |<br>| link_item_linkid_seq | sequence | |<br>| lock_monitor | view | |<br>| log_file | table | |<br>| log_report | table | |<br>| log_report_reportid_seq | sequence | |<br>| log_reportfile | table | |<br>| msfd_afdreleasecontext | table | |<br>| msfd_attribute | table | |<br>| msfd_context | table | |<br>| msfd_context_contextid_seq | sequence | |<br>| msfd_contextnode | table | |<br>| msfd_extdatarelease | table | |<br>| msfd_extdatarelease_id_seq | sequence | |<br>| msfd_extdatatype | table | |<br>| msfd_extdatatyperoleright | table | |<br>| msfd_group | table | |<br>| msfd_group_groupid_seq | sequence | |<br>| msfd_module | table | |<br>| msfd_placecontext | table | |<br>| msfd_placegroup | table | |<br>| msfd_placeschedule | table | |<br>| msfd_schedule | table | |<br>| msfd_schedule_scheduleid_seq | sequence | |<br>| msfd_setting | table | |<br>| msfd_tester | table | |<br>| msfd_testercontext | table | |<br>| msfd_testergroup | table | |<br>| msfd_testerschedule | table | |<br>| msfd_vehiclecontext | table | |<br>| nve_key | table | |<br>| nve_nominal | table | |<br>| nve_size | table | |<br>| nve_teststand | table | |<br>| nve_teststand_teststandid_seq | sequence | |<br>| nve_text | table | |<br>| nve_value | table | |<br>| nve_vehicletype | table | |<br>| nve_vehicletype_vehicletypeid_seq | sequence | |<br>| nve_version | table | |<br>| privilege_class | table | |<br>| privilege_class_classid_seq | sequence | |<br>| privilege_object | table | |<br>| privilege_object_objectid_seq | sequence | |<br>| privilege_op | table | |<br>| prodat_event | table | |<br>| prodat_flashecu | table | |<br>| prodat_flashfamily | table | |<br>| prodat_flashfile | table | |<br>| prodat_flashpart | table | |<br>| prodat_internal_seq | sequence | |<br>| prodat_option | table | |<br>| prodat_optionfamily | table | |<br>| prodat_optpack | table | |<br>| prodat_optpack_packageid_seq | sequence | |<br>| prodat_packageoption | table | |<br>| prodat_parameter | table | |<br>| prodat_position | table | |<br>| prodat_sequence | table | |<br>| prodat_setting | table | |<br>| prodat_vehicle | table | |<br>| prodat_vehicleref | table | |<br>| prodatvpd_key | table | |<br>| prodatvpd_topic | table | |<br>| prodatvpd_value | table | |<br>| prodatvpd_vehicle | table | |<br>| prodis_device | table | |<br>| prodis_node | table | |<br>| prodis_system | table | |<br>| repair_code | table | |<br>| repair_hit | table | |<br>| repair_module | table | |<br>| repair_modulesymptom | table | |<br>| repair_symptom | table | |<br>| repair_teststep | table | |<br>| result_envtext | table | |<br>| result_error | table | |<br>| result_errorcoderef | table | |<br>| result_errorsymptom | table | |<br>| result_export | table | |<br>| result_export_exportid_seq | sequence | |<br>| result_ident | table | |<br>| result_langtext | table | |<br>| result_part | view | |<br>| result_part_01 | table | |<br>| result_part_02 | table | |<br>| result_part_03 | table | |<br>| result_part_04 | table | |<br>| result_part_05 | table | |<br>| result_part_06 | table | |<br>| result_part_07 | table | |<br>| result_part_08 | table | |<br>| result_part_09 | table | |<br>| result_part_10 | table | |<br>| result_part_11 | table | |<br>| result_part_12 | table | |<br>| result_part_empty | table | |<br>| result_pathecu | table | |<br>| result_pathecu_ecuid_seq | sequence | |<br>| result_pathfunc | table | |<br>| result_pathfunc_funcid_seq | sequence | |<br>| result_pathstep | table | |<br>| result_pathstep_stepid_seq | sequence | |<br>| result_raw | table | |<br>| result_release | table | |<br>| result_release_releaseid_seq | sequence | |<br>| result_releasepbl | table | |<br>| result_releasepblexport | table | |<br>| result_releaseptb | table | |<br>| result_releasestep | table | |<br>| result_releasestepexport | table | |<br>| result_serial | table | |<br>| result_setting | table | |<br>| result_test | table | |<br>| result_testecu | view | |<br>| result_testecu_01 | table | |<br>| result_testecu_02 | table | |<br>| result_testecu_03 | table | |<br>| result_testecu_04 | table | |<br>| result_testecu_05 | table | |<br>| result_testecu_06 | table | |<br>| result_testecu_07 | table | |<br>| result_testecu_08 | table | |<br>| result_testecu_09 | table | |<br>| result_testecu_10 | table | |<br>| result_testecu_11 | table | |<br>| result_testecu_12 | table | |<br>| result_testecu_empty | table | |<br>| result_testpbl | view | |<br>| result_testpbl_01 | table | |<br>| result_testpbl_02 | table | |<br>| result_testpbl_03 | table | |<br>| result_testpbl_04 | table | |<br>| result_testpbl_05 | table | |<br>| result_testpbl_06 | table | |<br>| result_testpbl_07 | table | |<br>| result_testpbl_08 | table | |<br>| result_testpbl_09 | table | |<br>| result_testpbl_10 | table | |<br>| result_testpbl_11 | table | |<br>| result_testpbl_12 | table | |<br>| result_testpbl_empty | table | |<br>| result_testpblvar | table | |<br>| result_teststep | view | |<br>| result_teststep_01 | table | |<br>| result_teststep_02 | table | |<br>| result_teststep_03 | table | |<br>| result_teststep_04 | table | |<br>| result_teststep_05 | table | |<br>| result_teststep_06 | table | |<br>| result_teststep_07 | table | |<br>| result_teststep_08 | table | |<br>| result_teststep_09 | table | |<br>| result_teststep_10 | table | |<br>| result_teststep_11 | table | |<br>| result_teststep_12 | table | |<br>| result_teststep_empty | table | |<br>| result_teststeperror | view | |<br>| result_teststeperror_01 | table | |<br>| result_teststeperror_02 | table | |<br>| result_teststeperror_03 | table | |<br>| result_teststeperror_04 | table | |<br>| result_teststeperror_05 | table | |<br>| result_teststeperror_06 | table | |<br>| result_teststeperror_07 | table | |<br>| result_teststeperror_08 | table | |<br>| result_teststeperror_09 | table | |<br>| result_teststeperror_10 | table | |<br>| result_teststeperror_11 | table | |<br>| result_teststeperror_12 | table | |<br>| result_teststeperror_empty | table | |<br>| result_teststepvar | table | |<br>| result_testvar | table | |<br>| result_textref | table | |<br>| result_vpd | table | |<br>| stat_emailreceiver | table | |<br>| stat_las | table | |<br>| stat_las_lasid_seq| sequence | |<br>| stat_parameter | table | |<br>| stat_parameter_group_read | table | |<br>| stat_parameter_group_write | table | |<br>| stat_parameter_reportid_seq| sequence | |<br>| stat_pblgroup | table | |<br>| stat_pblgroup_pblgroupid_seq| sequence | |<br>| stat_pblnr | table | |<br>| stat_place | table | |<br>| stat_place_placeid_seq| sequence | |<br>| stat_reportrecord | table | |<br>| stat_shift | table | |<br>| stat_stationgroup | table | |<br>| stat_stationgroup_stationgroupid_seq| sequence | |<br>| stat_statnr | table | |<br>| stat_statnrgroup | table | |<br>| stat_statnrgroup_statnrgroupid_seq| sequence | |<br>| stat_summary | table | |<br>| stat_vehicletype | table | |<br>| stat_vehicletype_vehicletypeid_seq| sequence | |<br>| sysmon_host | table | |<br>| sysmon_hostmenu | table | |<br>| sysmon_iteminstance | table | |<br>| sysmon_menu | table | |<br>| sysmon_menu_menuid_seq| sequence | |<br>| sysmon_setting | table | |<br>| sysmon_state | table | |<br>| user_account | table | |<br>| user_account_accountid_seq| sequence | |<br>| user_directoryaccount | table | |<br>| user_directoryprofile | table | |<br>| user_nodeaccount | table | |<br>| user_profilesetting | table | |<br>| user_role | table | |<br>| user_rolelist | table | |<br>| user_rolerolelist | table | |<br>| v_result_etq | view | |<br>| v_result_ftq | view | |<br>| v_result_langtext | view | |<br>| version_device | table | |<br>| version_process | table | |</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -936,13 +1030,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Symbols count total">21k</span>
+    <span title="Symbols count total">31k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">19 mins.</span>
+    <span title="Reading time total">28 mins.</span>
   </span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
