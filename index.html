@@ -234,9 +234,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-07-12 11:46:56 / Modified: 14:51:04" itemprop="dateCreated datePublished" datetime="2022-07-12T11:46:56+08:00">2022-07-12</time>
+      <time title="Created: 2022-07-12 11:46:56" itemprop="dateCreated datePublished" datetime="2022-07-12T11:46:56+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-07-13 17:27:03" itemprop="dateModified" datetime="2022-07-13T17:27:03+08:00">2022-07-13</time>
     </span>
 
   
@@ -246,14 +252,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>9.6k</span>
+      <span>11k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>9 mins.</span>
+      <span>10 mins.</span>
     </span>
 </div>
 
@@ -266,7 +272,8 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="1-Devices"><a href="#1-Devices" class="headerlink" title="1. Devices"></a>1. Devices</h1><h2 id="1-1-Release-Monitor"><a href="#1-1-Release-Monitor" class="headerlink" title="1.1 Release Monitor"></a>1.1 Release Monitor</h2><h3 id="1-1-1-Test-Releases"><a href="#1-1-1-Test-Releases" class="headerlink" title="1.1.1 Test Releases"></a>1.1.1 Test Releases</h3><p>System: Directories? “/data/afd/rel/&lt;cpl/mftc&gt;/<releasenr>/release”</p>
 <p>Testrelease: release file “CONFIGURATION”</p>
-<p><img src="C:\Users\LJX\AppData\Roaming\marktext\images\2022-07-07-17-58-31-image.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RELEASE&#123;</span><br><span class="line"> RELEASENR&#123;1652426358;&#125;</span><br><span class="line"> CONFIGURATION&#123;<span class="string">&quot;YSC&quot;</span>;&#125;</span><br><span class="line"> COMMENT&#123;<span class="string">&quot;Version 2471664 update all fix IBC OBD&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+
 <p>Version: afd_release.creationtime</p>
 <p>Description: release file “COMMENT”</p>
 <p>Reloaded: select COUNT(sysnr) from afd_tester where currentrele aseid = ‘5339’; # 5339 get from /data/afd/rel/mftc/1652426358/release</p>
@@ -275,12 +282,32 @@
 <p>systemname: afd_test.tname</p>
 <p>Version: afd_release.creationtime 对应的release的创建时间�?</p>
 <p>Last online: afd_test.lastaccesstime</p>
-<h3 id="1-1-3-Tasks-overview"><a href="#1-1-3-Tasks-overview" class="headerlink" title="1.1.3 Tasks-overview"></a>1.1.3 Tasks-overview</h3><p>Command: afd_task.command</p>
+<h3 id="1-1-7-Tasks-overview"><a href="#1-1-7-Tasks-overview" class="headerlink" title="1.1.7 Tasks-overview"></a>1.1.7 Tasks-overview</h3><p>Command: afd_task.command</p>
 <h2 id="1-2-Devices"><a href="#1-2-Devices" class="headerlink" title="1.2 Devices"></a>1.2 Devices</h2><h3 id="1-2-1-Device-types"><a href="#1-2-1-Device-types" class="headerlink" title="1.2.1 Device types"></a>1.2.1 Device types</h3><p>select * from device_devicetype where active = ‘Y’;</p>
 <p>Number of devices: select count(sysnr) from device_property where variant = ‘MFT-3’;</p>
 <h3 id="1-2-3-Setups"><a href="#1-2-3-Setups" class="headerlink" title="1.2.3 Setups"></a>1.2.3 Setups</h3><p>device_coldstart</p>
 <h3 id="1-2-4-Place"><a href="#1-2-4-Place" class="headerlink" title="1.2.4 Place"></a>1.2.4 Place</h3><p>config_place</p>
-<p>List of relations</p>
+<h1 id="2-Production-data"><a href="#2-Production-data" class="headerlink" title="2. Production data"></a>2. Production data</h1><h2 id="2-1-Vehicle-List"><a href="#2-1-Vehicle-List" class="headerlink" title="2.1 Vehicle - List"></a>2.1 Vehicle - List</h2><p>prodat_vehicle</p>
+<h2 id="2-2-Configuration"><a href="#2-2-Configuration" class="headerlink" title="2.2 Configuration"></a>2.2 Configuration</h2><h3 id="2-2-1-MSFD-Attributes"><a href="#2-2-1-MSFD-Attributes" class="headerlink" title="2.2.1 MSFD Attributes"></a>2.2.1 MSFD Attributes</h3><p>msfd_attribute</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h1 id="Administration"><a href="#Administration" class="headerlink" title="Administration"></a>Administration</h1><h2 id="User"><a href="#User" class="headerlink" title="User"></a>User</h2><h3 id="gt-Overview"><a href="#gt-Overview" class="headerlink" title="-&gt; Overview"></a>-&gt; Overview</h3><p>user_account</p>
+<h2 id="Translation"><a href="#Translation" class="headerlink" title="Translation"></a>Translation</h2><h3 id="gt-Overview-1"><a href="#gt-Overview-1" class="headerlink" title="-&gt; Overview"></a>-&gt; Overview</h3><p>select * from i18n_langtext where ltext = ‘PRODIS.Server Configurationrecord’;</p>
+<h2 id="User-language"><a href="#User-language" class="headerlink" title="User language"></a>User language</h2><h3 id="gt-overview"><a href="#gt-overview" class="headerlink" title="-&gt; overview"></a>-&gt; overview</h3><p>i18n_language</p>
+<h2 id="Audit-Log"><a href="#Audit-Log" class="headerlink" title="Audit Log"></a>Audit Log</h2><h3 id="gt-Auditlog-overview"><a href="#gt-Auditlog-overview" class="headerlink" title="-&gt; Auditlog overview"></a>-&gt; Auditlog overview</h3><p>select * from audit_log order by recordtime DESC;</p>
+<p>    <em><strong>Action</strong></em></p>
+<p>select action_id,ltext from audit_action inner join i18n_langtext on i18n_langtext.textrefid = nametextrefid where langcode= ‘en’;</p>
+<p>    <em><strong>Edited Object</strong></em></p>
+<p>audit_log.object1_desc</p>
+<p>    <em><strong>login</strong></em></p>
+<p>audit_log.login</p>
+<p>    <em><strong>Time</strong></em></p>
+<p>audit_log.recordtime</p>
+<p>    <em><strong>Status</strong></em></p>
+<p>select status_id,ltext from audit_status inner join i18n_langtext on i18n_langtext.textrefid = nametextrefid where langcode= ‘en’;</p>
+<p>1=Success</p>
+<p>2=Failure</p>
+<h2 id="System-Monitor"><a href="#System-Monitor" class="headerlink" title="System Monitor"></a>System Monitor</h2><h3 id="gt-Status"><a href="#gt-Status" class="headerlink" title="-&gt; Status"></a>-&gt; Status</h3><p>select * from i18n_langtext inner join sysmon_menu on i18n_langtext.textrefid = titletextrefid;</p>
+<h3 id="gt-Host"><a href="#gt-Host" class="headerlink" title="-&gt; Host"></a>-&gt; Host</h3><p>select * from sysmon_host</p>
+<h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><p>List of relations</p>
 <table>
 <thead>
 <tr>
@@ -542,192 +569,192 @@
 <tr>
 <td align="center">device_devicetype</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">config_devicetype有关，记录各设备名、运行系、cpu、冷启地址以及记录时间</td>
 </tr>
 <tr>
 <td align="center">device_distribution</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">记录冷启安装描述文件</td>
 </tr>
 <tr>
 <td align="center">device_download</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">device_download_downloadid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">?上述的队列</td>
 </tr>
 <tr>
 <td align="center">device_nodecoldstart</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">device_placedownload</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center"><em><strong>device_property</strong></em></td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">重要表之一，记录设备各种属性，包括目前冷启版本(tester-i386-l06/ver6.46.2.16_rpmup), ip addr(172.27.15.225),上一次冷启时间，记录时间，开关情况，ip addr2 以及获取方法等详细信息</td>
 </tr>
 <tr>
 <td align="center">device_subdevice</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty，子设备？</td>
 </tr>
 <tr>
 <td align="center">device_subsystem</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">子系统？</td>
 </tr>
 <tr>
 <td align="center">device_testercert</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">设备ssid以及证书文件，记录时间</td>
 </tr>
 <tr>
 <td align="center">device_testercert_testercertid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">device_testerdownload</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty，设备下载release的记录，以及时间</td>
 </tr>
 <tr>
 <td align="center">device_vehiclehistory</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">device_vehiclehistory_historyid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">eris_retest</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty某开发人员的测试？</td>
 </tr>
 <tr>
 <td align="center">fazit_activity</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">fazitconshow -A</td>
 </tr>
 <tr>
 <td align="center">fazit_alive</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">fazit heartbeat</td>
 </tr>
 <tr>
-<td align="center">fazit_doc_component</td>
+<td align="center"><strong>fazit_doc_component</strong></td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">?</td>
 </tr>
 <tr>
-<td align="center">fazit_docdata</td>
+<td align="center"><strong>fazit_docdata</strong></td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">?</td>
 </tr>
 <tr>
-<td align="center">fazit_docstatus</td>
+<td align="center"><strong>fazit_docstatus</strong></td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">?</td>
 </tr>
 <tr>
 <td align="center">fazit_dt_ans</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">?</td>
 </tr>
 <tr>
 <td align="center">fazit_dt_ans_transp</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">fazit_dt_req</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">?</td>
 </tr>
 <tr>
-<td align="center">fazit_ecu</td>
+<td align="center"><strong>fazit_ecu</strong></td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center"><strong>大量的fazit相关信息</strong></td>
 </tr>
 <tr>
-<td align="center">fazit_ecu_component</td>
+<td align="center"><strong>fazit_ecu_component</strong></td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">ecu的component数据, ecuid以及记录时间</td>
 </tr>
 <tr>
 <td align="center">fazit_ecu_ecuid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">fazit_error</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">fazit的错误信息</td>
 </tr>
 <tr>
 <td align="center">fazit_error_errorid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
-<td align="center">fazit_komp</td>
+<td align="center"><strong>fazit_komp</strong></td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">component防盗请求以及回复报文</td>
 </tr>
 <tr>
 <td align="center">fazit_ks</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
-<td align="center">fazit_ks03</td>
+<td align="center"><strong>fazit_ks03</strong></td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">钥匙防盗请求以及回复报文</td>
 </tr>
 <tr>
 <td align="center">fazit_ks2_component</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">fazit_ks_component</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">fazit_mk0x</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">fazit_request</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">prodis对fazit的请求报文合集</td>
 </tr>
 <tr>
 <td align="center">fazit_response</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">fazit对prodis的回复报文合集</td>
 </tr>
 <tr>
 <td align="center">fazit_sdfd</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">fazit_sequence_telno</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">fazit_setting</td>
@@ -777,7 +804,7 @@
 <tr>
 <td align="center">fazit_tel_telno_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">fazit_telinstance</td>
@@ -792,7 +819,7 @@
 <tr>
 <td align="center">fazit_terminal_terminalid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">fazit_tra3</td>
@@ -817,12 +844,12 @@
 <tr>
 <td align="center">fazit_vehicle</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">extended pid, pid, vin 对照表，以及记录时间</td>
 </tr>
 <tr>
 <td align="center">fazit_vehiclestate</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">fazit_vkms</td>
@@ -852,12 +879,12 @@
 <tr>
 <td align="center">fazit_wfsstatus</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">fiseqs_result</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">fiseqs_resultcfg</td>
@@ -872,102 +899,102 @@
 <tr>
 <td align="center">fiseqs_vehicle</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">ftab_codefile</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">ftab_codefilefile</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">ftab_codefilereltabversion</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">ftab_codefileversion</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">ftab_release</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">ftab_release_releaseid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">ftab_releaseversion</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">ftab_reltab</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">ftab_reltabfile</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">ftab_reltabversion</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">ftab_setting</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">ftab 设置目录</td>
 </tr>
 <tr>
 <td align="center">ftab_vehicle</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">i18n_applanguage</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">语言的langcode与lname的对照表(de_DE    | Deutsch)</td>
 </tr>
 <tr>
 <td align="center">i18n_langblob</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">各种语言的单词表</td>
 </tr>
 <tr>
 <td align="center">i18n_langtext</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">各种语言的单词表</td>
 </tr>
 <tr>
 <td align="center">i18n_language</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">语言加载顺序以及记录时间</td>
 </tr>
 <tr>
 <td align="center">i18n_languagemap</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">？</td>
 </tr>
 <tr>
 <td align="center">i18n_textref</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">修改翻译的记录</td>
 </tr>
 <tr>
 <td align="center">i18n_textref_textrefid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">link_item</td>
@@ -977,32 +1004,32 @@
 <tr>
 <td align="center">link_item_linkid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">lock_monitor</td>
 <td align="center">view</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">log_file</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">记录log的文件名，文件大小，记录时间起点以及终点</td>
 </tr>
 <tr>
 <td align="center">log_report</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty，对Statistic report的记录？</td>
 </tr>
 <tr>
 <td align="center">log_report_reportid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">log_reportfile</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">msfd_afdreleasecontext</td>
@@ -1022,7 +1049,7 @@
 <tr>
 <td align="center">msfd_context_contextid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">msfd_contextnode</td>
@@ -1037,7 +1064,7 @@
 <tr>
 <td align="center">msfd_extdatarelease_id_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">msfd_extdatatype</td>
@@ -1057,7 +1084,7 @@
 <tr>
 <td align="center">msfd_group_groupid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">msfd_module</td>
@@ -1072,7 +1099,7 @@
 <tr>
 <td align="center">msfd_placegroup</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">msfd_placeschedule</td>
@@ -1087,7 +1114,7 @@
 <tr>
 <td align="center">msfd_schedule_scheduleid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">msfd_setting</td>
@@ -1102,7 +1129,7 @@
 <tr>
 <td align="center">msfd_testercontext</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">msfd_testergroup</td>
@@ -1122,52 +1149,52 @@
 <tr>
 <td align="center">nve_key</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">nve_nominal</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">nve_size</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">nve_teststand</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">nve_teststand_teststandid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">nve_text</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">nve_value</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">nve_vehicletype</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">nve_vehicletype_vehicletypeid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">nve_version</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">privilege_class</td>
@@ -1177,7 +1204,7 @@
 <tr>
 <td align="center">privilege_class_classid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">privilege_object</td>
@@ -1187,7 +1214,7 @@
 <tr>
 <td align="center">privilege_object_objectid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">privilege_op</td>
@@ -1222,7 +1249,7 @@
 <tr>
 <td align="center">prodat_internal_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">prodat_option</td>
@@ -1242,7 +1269,7 @@
 <tr>
 <td align="center">prodat_optpack_packageid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">prodat_packageoption</td>
@@ -1372,7 +1399,7 @@
 <tr>
 <td align="center">result_export_exportid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">result_ident</td>
@@ -1462,7 +1489,7 @@
 <tr>
 <td align="center">result_pathecu_ecuid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">result_pathfunc</td>
@@ -1472,7 +1499,7 @@
 <tr>
 <td align="center">result_pathfunc_funcid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">result_pathstep</td>
@@ -1482,7 +1509,7 @@
 <tr>
 <td align="center">result_pathstep_stepid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">result_raw</td>
@@ -1492,17 +1519,17 @@
 <tr>
 <td align="center">result_release</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">result_release_releaseid_seq</td>
 <td align="center">sequence</td>
-<td align="center"></td>
+<td align="center">上述的队列</td>
 </tr>
 <tr>
 <td align="center">result_releasepbl</td>
 <td align="center">table</td>
-<td align="center"></td>
+<td align="center">empty</td>
 </tr>
 <tr>
 <td align="center">result_releasepblexport</td>
@@ -2811,13 +2838,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Symbols count total">30k</span>
+    <span title="Symbols count total">32k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">28 mins.</span>
+    <span title="Reading time total">29 mins.</span>
   </span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
