@@ -134,7 +134,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -204,6 +204,92 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lucaszhn.gitee.io/2022/07/20/wsl%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%BB%E5%8A%A0%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://mms1.baidu.com/it/u=3101367084,445138575&fm=253&app=138&f=JPEG&fmt=auto&q=75?w=540&h=500">
+      <meta itemprop="name" content="Yijie Zhang">
+      <meta itemprop="description" content="An Idot from SH">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucas' Tiny World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/20/wsl%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%BB%E5%8A%A0%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">wsl子系统添加开机启动任务</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-07-20 13:51:31 / Modified: 13:58:13" itemprop="dateCreated datePublished" datetime="2022-07-20T13:51:31+08:00">2022-07-20</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>379</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>1 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="创建启动脚本"><a href="#创建启动脚本" class="headerlink" title="创建启动脚本"></a>创建启动脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/init.wsl</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">/etc/init.d/smbd start</span><br></pre></td></tr></table></figure>
+<h2 id="添加执行权限"><a href="#添加执行权限" class="headerlink" title="添加执行权限"></a>添加执行权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /etc/init.wsl</span><br></pre></td></tr></table></figure>
+<h2 id="编辑sudoers，避免输入密码"><a href="#编辑sudoers，避免输入密码" class="headerlink" title="编辑sudoers，避免输入密码"></a>编辑sudoers，避免输入密码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/sudoers</span><br></pre></td></tr></table></figure>
+<h2 id="添加一行"><a href="#添加一行" class="headerlink" title="添加一行"></a>添加一行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%sudo ALL=NOPASSWD: /etc/init.wsl</span><br></pre></td></tr></table></figure>
+<h2 id="返回windows界面"><a href="#返回windows界面" class="headerlink" title="返回windows界面"></a>返回windows界面</h2><h2 id="创建一个startservice-vbs脚本"><a href="#创建一个startservice-vbs脚本" class="headerlink" title="创建一个startservice.vbs脚本"></a>创建一个startservice.vbs脚本</h2><figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Set</span> ws = WScript.CreateObject(<span class="string">&quot;WScript.Shell&quot;</span>)</span><br><span class="line">ws.run <span class="string">&quot;C:\Windows\System32\bash.exe -c &#x27;sudo /etc/init.wsl&#x27;&quot;</span>,<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h2 id="按键win-r"><a href="#按键win-r" class="headerlink" title="按键win+r"></a>按键win+r</h2><p>输入shell:startup系统会自动打开一个目录</p>
+<h2 id="将上一步创建的vbs脚本放到该目录下"><a href="#将上一步创建的vbs脚本放到该目录下" class="headerlink" title="将上一步创建的vbs脚本放到该目录下"></a>将上一步创建的vbs脚本放到该目录下</h2>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1031,13 +1117,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Symbols count total">32k</span>
+    <span title="Symbols count total">33k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">29 mins.</span>
+    <span title="Reading time total">30 mins.</span>
   </span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
