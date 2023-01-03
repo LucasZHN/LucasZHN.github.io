@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Lucas Zhang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="如题，当APPLICATION组遇到通信问题或数据下载上传问题时，遇到的问题记录如下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="辅助Application测试">
+<meta property="og:url" content="http://lucaszhn.gitee.io/2022/12/06/%E8%BE%85%E5%8A%A9Application%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="Lucas&#39; blog">
+<meta property="og:description" content="如题，当APPLICATION组遇到通信问题或数据下载上传问题时，遇到的问题记录如下。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-06T09:05:57.000Z">
+<meta property="article:modified_time" content="2023-01-03T07:38:06.000Z">
+<meta property="article:author" content="Lucas Zhang">
+<meta property="article:tag" content="DSA">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>辅助Application测试 - Lucas&#39; blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lucaszhn.gitee.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"I","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"COPY"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Lucas&#39; Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.3dmgame.com/uploads/images/news/20200626/1593128639_907104.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="辅助Application测试"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-06 17:05" pubdate>
+          December 6, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">辅助Application测试</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><em>如题，当APPLICATION组遇到通信问题或数据下载上传问题时，遇到的问题记录如下。</em></p>
+<span id="more"></span>
+<h1 id="1-“Module-name”-无法选中-其他module"><a href="#1-“Module-name”-无法选中-其他module" class="headerlink" title="1. “Module name” 无法选中 其他module"></a>1. “Module name” 无法选中 其他module</h1><blockquote>
+<p>Devices -&gt; Devices -&gt; Data Release Groups -&gt; ➕ </p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> msfd_module;<br></code></pre></td></tr></table></figure>
+<p>-&gt;</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql">prodis<span class="hljs-operator">=</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> msfd_module;<br> modulename <span class="hljs-operator">|</span>         recordtime         <span class="hljs-operator">|</span> assignable <span class="hljs-operator">|</span> singleattribute <span class="hljs-operator">|</span> groupable<br><span class="hljs-comment">------------+----------------------------+------------+-----------------+-----------</span><br> config     <span class="hljs-operator">|</span> <span class="hljs-number">2016</span><span class="hljs-number">-01</span><span class="hljs-number">-04</span> <span class="hljs-number">09</span>:<span class="hljs-number">39</span>:<span class="hljs-number">55.233474</span> <span class="hljs-operator">|</span> Y          <span class="hljs-operator">|</span> Y               <span class="hljs-operator">|</span> N<br> flash3     <span class="hljs-operator">|</span> <span class="hljs-number">2022</span><span class="hljs-number">-06</span><span class="hljs-number">-01</span> <span class="hljs-number">11</span>:<span class="hljs-number">57</span>:<span class="hljs-number">33.620522</span> <span class="hljs-operator">|</span> Y          <span class="hljs-operator">|</span> Y               <span class="hljs-operator">|</span> Y<br> odx        <span class="hljs-operator">|</span> <span class="hljs-number">2022</span><span class="hljs-number">-07</span><span class="hljs-number">-12</span> <span class="hljs-number">17</span>:<span class="hljs-number">23</span>:<span class="hljs-number">56.502474</span> <span class="hljs-operator">|</span> N          <span class="hljs-operator">|</span> N               <span class="hljs-operator">|</span> N<br> msfd       <span class="hljs-operator">|</span> <span class="hljs-number">2022</span><span class="hljs-number">-07</span><span class="hljs-number">-12</span> <span class="hljs-number">17</span>:<span class="hljs-number">27</span>:<span class="hljs-number">39.39437</span>  <span class="hljs-operator">|</span> N          <span class="hljs-operator">|</span> N               <span class="hljs-operator">|</span> N<br> odx3       <span class="hljs-operator">|</span> <span class="hljs-number">2022</span><span class="hljs-number">-06</span><span class="hljs-number">-01</span> <span class="hljs-number">11</span>:<span class="hljs-number">57</span>:<span class="hljs-number">33.636093</span> <span class="hljs-operator">|</span> N          <span class="hljs-operator">|</span> N               <span class="hljs-operator">|</span> Y<br>(<span class="hljs-number">5</span> <span class="hljs-keyword">rows</span>)<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">update</span> msfd_module <span class="hljs-keyword">SET</span> groupable <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Y&#x27;</span> <span class="hljs-keyword">where</span> modulename <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;odx3&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<h1 id="2-“冷启包找不到”"><a href="#2-“冷启包找不到”" class="headerlink" title="2. “冷启包找不到”"></a>2. “冷启包找不到”</h1><blockquote>
+<p>Devices -&gt; Devices -&gt; Setups</p>
+</blockquote>
+<h2 id="2-1-数据库问题"><a href="#2-1-数据库问题" class="headerlink" title="2.1 数据库问题"></a>2.1 数据库问题</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> sysnr, systemid, nametextrefid, langcode, ltext <span class="hljs-keyword">FROM</span> public.prodis_device <span class="hljs-keyword">JOIN</span> i18n_langtext <span class="hljs-keyword">on</span> nametextrefid <span class="hljs-operator">=</span> textrefid;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql">prodis<span class="hljs-operator">=</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SELECT</span> sysnr, systemid, nametextrefid, langcode, ltext <span class="hljs-keyword">FROM</span> public.prodis_device <span class="hljs-keyword">JOIN</span> i18n_langtext <span class="hljs-keyword">on</span> nametextrefid <span class="hljs-operator">=</span> textrefid;<br> sysnr <span class="hljs-operator">|</span> systemid <span class="hljs-operator">|</span> nametextrefid <span class="hljs-operator">|</span> langcode <span class="hljs-operator">|</span>   ltext<br><span class="hljs-comment">-------+----------+---------------+----------+------------</span><br>     <span class="hljs-number">1</span> <span class="hljs-operator">|</span>       <span class="hljs-number">10</span> <span class="hljs-operator">|</span>        <span class="hljs-number">322740</span> <span class="hljs-operator">|</span> de       <span class="hljs-operator">|</span> server<span class="hljs-number">-1</span><br>     <span class="hljs-number">1</span> <span class="hljs-operator">|</span>       <span class="hljs-number">10</span> <span class="hljs-operator">|</span>        <span class="hljs-number">322740</span> <span class="hljs-operator">|</span> en       <span class="hljs-operator">|</span> server<span class="hljs-number">-1</span><br>     <span class="hljs-number">1</span> <span class="hljs-operator">|</span>        <span class="hljs-number">5</span> <span class="hljs-operator">|</span>        <span class="hljs-number">323925</span> <span class="hljs-operator">|</span> de       <span class="hljs-operator">|</span> MFTD2X<span class="hljs-number">-001</span><br>     <span class="hljs-number">2</span> <span class="hljs-operator">|</span>       <span class="hljs-number">10</span> <span class="hljs-operator">|</span>        <span class="hljs-number">323939</span> <span class="hljs-operator">|</span> de       <span class="hljs-operator">|</span> server<span class="hljs-number">-2</span><br>     <span class="hljs-number">2</span> <span class="hljs-operator">|</span>       <span class="hljs-number">10</span> <span class="hljs-operator">|</span>        <span class="hljs-number">323939</span> <span class="hljs-operator">|</span> en       <span class="hljs-operator">|</span> server<span class="hljs-number">-2</span><br>(<span class="hljs-number">5</span> <span class="hljs-keyword">rows</span>)<br><br></code></pre></td></tr></table></figure>
+
+<p>如果返回结果无返回<code>ltext</code>值则会出现pcontrol加载不出coldstart的情况<br>删除设备后重新添加。</p>
+<h2 id="2-2-文件权限问题"><a href="#2-2-文件权限问题" class="headerlink" title="2.2 文件权限问题"></a>2.2 文件权限问题</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">QDAO1A:/export/boot <span class="hljs-comment"># ll</span><br>total 24<br>drwxrwxr-x 2 wwwrun <span class="hljs-built_in">users</span> 4096 Jul  8 23:33 cswindows<br>drwxrwxr-x 5 prodis <span class="hljs-built_in">users</span> 4096 Jul 21 19:38 dpm<br>drwxrwxr-x 3 root   root  4096 Jun 27 17:35 firap2<br>drwxr-xr-x 4 root   root  4096 Jul  8 22:14 global<br>drwxr-xr-x 5    101 <span class="hljs-built_in">users</span> 4096 Jun 27 17:35 mftc<br>drwxrwxr-x 4 root   root  4096 Jun 27 17:35 tester<br></code></pre></td></tr></table></figure>
+
+<p>应所有所属用户与组为dsa:users</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chown</span> -R dsa:<span class="hljs-built_in">users</span> *<br></code></pre></td></tr></table></figure>
+<h2 id="2-3-dpm服务不正常"><a href="#2-3-dpm服务不正常" class="headerlink" title="2.3 dpm服务不正常"></a>2.3 dpm服务不正常</h2><p>在 <code>/etc/apache2/conf.d</code>文件夹下无<code>dsarpc-dpmservice.conf</code>文件，重新上传以及安装<code>dpmservice-1.8.0-3.4.sle15.x86_64.rpm</code></p>
+<h1 id="3-mft获取车辆信息输出文件-vin文件错误"><a href="#3-mft获取车辆信息输出文件-vin文件错误" class="headerlink" title="3. mft获取车辆信息输出文件*.vin文件错误"></a>3. mft获取车辆信息输出文件<code>*.vin</code>文件错误</h1><p>如果获取的是例如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mftc 20 prodat prodat &lt;VIN&gt;.vin<br></code></pre></td></tr></table></figure>
+<p>而不是一长串</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">3900138    D1A1    2022-10-09T14:48:49       10000054828      VIN <br>...data emmited...<br></code></pre></td></tr></table></figure>
+
+<p><code>sfd.ini:prodat:fetchprg</code><br>改为<br><code>/opt/dsa/prodis/bin/prodatdistsvr -c %CONTEXT% %KEY%</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">WUH4A:~ <span class="hljs-comment"># getvalue sfd.ini:prodat</span><br>[prodat]<br>module=prodat<br>offline=<br>directory=/export/prodat<br>fetchprg=/opt/dsa/prodis/bin/prodatdistsvr -c %CONTEXT% %KEY%<br>subdiroffset=0<br>subdirlen=5<br>subdirside=r<br>pollinterval=10<br><span class="hljs-built_in">timeout</span>=30<br>fromstdin=1<br>reqsavemode=0<br>remoting=0<br>searchmode=0<br></code></pre></td></tr></table></figure>
+<h1 id="4-odx导入后不可使用"><a href="#4-odx导入后不可使用" class="headerlink" title="4. odx导入后不可使用"></a>4. odx导入后不可使用</h1><p>Production data -&gt; ODX Import -&gt; Overview</p>
+<p><code>Result: Fahrzeugklasse unbekannt</code><br>        车辆    型号    未知</p>
+<h2 id="4-1-配置文件"><a href="#4-1-配置文件" class="headerlink" title="4.1 配置文件"></a>4.1 配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">QDAO1A:/etc/apache2/conf.d <span class="hljs-comment"># cdlog</span><br>QDAO1A:/var/opt/dsa/log <span class="hljs-comment"># less odximport.lg0</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sas"> 221018 104101.125017 odximport    .  570 [dbapi.cpp   :2664] 0007 Argument <span class="hljs-keyword">list</span> too long: SA_DBMS_API_Error 23503 <span class="hljs-keyword">ERROR</span>:  <span class="hljs-keyword">insert</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">update</span> <span class="hljs-keyword">on</span> <span class="hljs-keyword">table</span> <span class="hljs-string">&quot;msfd_context&quot;</span> violates <span class="hljs-keyword">foreign</span> <span class="hljs-keyword">key</span> constraint <span class="hljs-string">&quot;msfd_contextfk1&quot;</span><br>DETAIL:  <span class="hljs-keyword">Key</span> (attributename, modulename)=(T2X_CAN_CANFD_DOIP_QingDao, odx3) is <span class="hljs-keyword">not</span> present <span class="hljs-keyword">in</span> <span class="hljs-keyword">table</span> <span class="hljs-string">&quot;msfd_attribute&quot;</span>.<br></code></pre></td></tr></table></figure>
+
+<p><code>odxdmgr.ini:config:msfdmodule</code> 应为 <code>odx3</code></p>
+<h2 id="4-2-pcontol设置"><a href="#4-2-pcontol设置" class="headerlink" title="4.2 pcontol设置"></a>4.2 pcontol设置</h2><p>Production data -&gt; Configuration -&gt; Data Rel.Attributes</p>
+<p><code>Module name:</code>  <code>odx3</code>   <code>Attribute name:</code>  <code>xxxxxxx</code>   -&gt;   <code>Add attribute</code></p>
+<h1 id="5-选择不了MFT4"><a href="#5-选择不了MFT4" class="headerlink" title="5. 选择不了MFT4"></a>5. 选择不了MFT4</h1><p>Device -&gt; Device -&gt; Device Types</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ad-important">注意页面中是有过滤的<br>![[Pasted image 20221031160331.png]]<br></code></pre></td></tr></table></figure>
+
+<h2 id="5-1-打开Status下的框框，勾选Inactive"><a href="#5-1-打开Status下的框框，勾选Inactive" class="headerlink" title="5.1 打开Status下的框框，勾选Inactive"></a>5.1 打开<code>Status</code>下的框框，勾选<code>Inactive</code></h2><p>![[ATTACHEMENTS/Pasted image 20221031160450.png]]</p>
+<h2 id="5-2-在最右部分开启。"><a href="#5-2-在最右部分开启。" class="headerlink" title="5.2 在最右部分开启。"></a>5.2 在最右部分开启。</h2><p>![[ATTACHEMENTS/Pasted image 20221031160555.png]]</p>
+<h1 id="6-pcontrol没有中文选项"><a href="#6-pcontrol没有中文选项" class="headerlink" title="6. pcontrol没有中文选项"></a>6. pcontrol没有中文选项</h1><h2 id="6-1-首先看下数据库中有没有zh"><a href="#6-1-首先看下数据库中有没有zh" class="headerlink" title="6.1 首先看下数据库中有没有zh"></a>6.1 首先看下数据库中有没有zh</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> i18n_language;<br></code></pre></td></tr></table></figure>
+<h2 id="6-2-若没有zh，进行如下操作"><a href="#6-2-若没有zh，进行如下操作" class="headerlink" title="6.2 若没有zh，进行如下操作"></a>6.2 若没有zh，进行如下操作</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> i18n_textref (contextid,texttype) <span class="hljs-keyword">values</span> (<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;s&#x27;</span>);<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> i18n_textref <span class="hljs-keyword">where</span> contextid<span class="hljs-operator">=</span><span class="hljs-string">&#x27;2&#x27;</span>;<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> i18n_language (langcode,nametextrefid,lname,lorder) <span class="hljs-keyword">values</span> (<span class="hljs-string">&#x27;zh&#x27;</span>,$textrefid,<span class="hljs-string">&#x27;中文&#x27;</span>,<span class="hljs-number">3</span>); # 将$textrefid替换为上面得到的textrefid<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> i18n_languagemap (langid,langcode) <span class="hljs-keyword">values</span> (<span class="hljs-number">86</span>,<span class="hljs-string">&#x27;zh&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<h2 id="6-3-重启jsonres2xml"><a href="#6-3-重启jsonres2xml" class="headerlink" title="6.3 重启jsonres2xml"></a>6.3 重启jsonres2xml</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">systemctl restart jsonres2xml-act.service<br></code></pre></td></tr></table></figure>
+
+<h1 id="7-导入dl24"><a href="#7-导入dl24" class="headerlink" title="7. 导入dl24"></a>7. 导入dl24</h1><p>把dl24包放到/export/dl24/import<br>执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">su - prodis -c <span class="hljs-string">&quot;. /etc/profile.local; umask 002;/opt/dsa/prodis/bin/asvimport -t2 -l asvimport &gt;/dev/null 2&gt;&amp;1 &lt;/dev/null&quot;</span><br></code></pre></td></tr></table></figure>
+<p>关注/var/opt/dsa/log/asvimport.lg0与本身文件夹的result.xml</p>
+<h2 id="7-1-重新导入"><a href="#7-1-重新导入" class="headerlink" title="7.1 重新导入"></a>7.1 重新导入</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs bash">UPS-URU1A:/var/opt/dsa/log <span class="hljs-comment"># msfdcontextlist</span><br>+-------------+----------------+--------------------------+---------------------+-------------------+<br>| Module      | Attribute      | Release-Context          | inactivesince       | deleted           |<br>+-------------+----------------+--------------------------+---------------------+-------------------+<br>| dl24        | 2GG            | C5-2GG-2020.12.03-92     |                     |                   |<br>| dl24        | 2GG            | C5-2GG-2021.09.17-112    |                     |                   |<br>| dl24        | 2GG            | C5-2GG-2022.06.20-166    |                     |                   |<br>| dl24        | 2GG            | C5-2GG-2022.09.28-197    |                     |                   |<br>| dl24        | 55D            | 78-55D-2022.11.09-1171   |                     |                   |<br>| dl24        | 604            | C5-604-2020.12.14-373    |                     |                   |<br>| dl24        | 604            | C5-604-2022.02.16-392    |                     |                   |<br>| dl24        | 604            | C5-604-2022.03.11-395    |                     |                   |<br>| dl24        | 604            | C5-604-2022.04.07-395    |                     |                   |<br>| dl24        | 67C            | C5-67C-2022.11.29-54     |                     |                   |<br>| flash       | 2GG            | CW-2GG-2020.10.24-8      |                     |                   |<br>| flash3      | 2GG            | C5-2GG-2020.12.03-92     |                     |                   |<br>| flash3      | 2GG            | C5-2GG-2021.09.17-112    |                     |                   |<br>| flash3      | 2GG            | C5-2GG-2022.06.20-166    |                     |                   |<br>| flash3      | 2GG            | C5-2GG-2022.09.28-197    |                     |                   |<br>| flash3      | 55D            | 78-55D-2022.11.09-1171   |                     |                   |<br>| flash3      | 604            | C5-604-2020.12.14-373    |                     |                   |<br>| flash3      | 604            | C5-604-2022.02.16-392    |                     |                   |<br>| flash3      | 604            | C5-604-2022.03.11-395    |                     |                   |<br>| flash3      | 604            | C5-604-2022.04.07-395    |                     |                   |<br>| flash3      | 67C            | C5-67C-2022.11.29-54     |                     |                   |<br>| odx3        | VW2531CS       | VW2531CS-2.65            |                     |                   |<br>| odx3        | VW2531CS       | VW2531CS-2.71            |                     |                   |<br>| odx3        | VW37XCS        | VW37XCS-2.128            |                     |                   |<br>| odx3        | VW37XCS        | VW37XCS-2.150            |                     |                   |<br>| odx3        | VW37XCS        | VW37XCS-2.159            |                     |                   |<br>+-------------+----------------+--------------------------+---------------------+-------------------+<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">msfdcontextdel -m dl24 -a 55D -c 78-55D-2022.11.09-1171 -f<br></code></pre></td></tr></table></figure>
+<p> 删掉/export/dl24/release/文件夹<br> 重新导入</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/DSA/">#DSA</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>辅助Application测试</div>
+      <div>http://lucaszhn.gitee.io/2022/12/06/辅助Application测试/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Lucas Zhang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>December 6, 2022</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - Non-commercial">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/12/09/loop%20-%20pseudo%20device/" title="loop - pseudo device">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">loop - pseudo device</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/22/%E6%95%91%E6%8F%B4%E6%A8%A1%E5%BC%8F%E6%8C%82%E8%BD%BDlvm%E5%87%BA%E9%94%99/" title="救援模式挂载lvm出错">
+                        <span class="hidden-mobile">救援模式挂载lvm出错</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       Just for Lucas. Please don't delete the virtual machine again. 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
